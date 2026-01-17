@@ -2,6 +2,16 @@ import streamlit as st
 from supabase import create_client, Client
 import json
 import pandas as pd
+import os
+
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+
+if not SUPABASE_URL or not SUPABASE_KEY:
+    st.error("Supabase credentials not found! Set SUPABASE_URL and SUPABASE_KEY as environment variables.")
+    st.stop()
+
+supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 # ----------------- Supabase Setup -----------------
 SUPABASE_URL = st.secrets.get("SUPABASE_URL") or "YOUR_SUPABASE_URL"
