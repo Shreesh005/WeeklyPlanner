@@ -1,6 +1,9 @@
 import os
 import streamlit as st
 from supabase import create_client
+import sys
+if not (sys.version_info.major == 3 and sys.version_info.minor == 11):
+    raise RuntimeError("This app requires Python 3.11.x! Current version: " + sys.version)
 
 # ---------------- CONFIG ----------------
 SUPABASE_URL = os.getenv("SUPABASE_URL")
